@@ -2,18 +2,20 @@
 using MongoDB.Driver;
 using System.Text.Json;
 
+
 namespace Catalog.Infrastructure.Data
 {
-    public class CatalogContextSeed
+    public static class CatalogContextSeed
     {
         public static void SeedData(IMongoCollection<Product> productCollection)
         {
-            bool checkProduct = productCollection.Find(b => true).Any();
+            bool checkProducts = productCollection.Find(b => true).Any();
             string path = Path.Combine("Data", "SeedData", "products.json");
-            if (!checkProduct)
+            if (!checkProducts)
             {
-                var typeData = File.ReadAllText(path);
-                var products = JsonSerializer.Deserialize<List<Product>>(typeData);
+                var productsData = File.ReadAllText(path);
+                //var productsData = File.ReadAllText("../Catalog.Infrastructure/Data/SeedData/products.json");
+                var products = JsonSerializer.Deserialize<List<Product>>(productsData);
                 if (products != null)
                 {
                     foreach (var item in products)

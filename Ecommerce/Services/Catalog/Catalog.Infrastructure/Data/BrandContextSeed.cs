@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace Catalog.Infrastructure.Data
 {
-    public class BrandContextSeed
+    public static class BrandContextSeed
     {
         public static void SeedData(IMongoCollection<ProductBrand> brandCollection)
         {
@@ -12,13 +12,14 @@ namespace Catalog.Infrastructure.Data
             string path = Path.Combine("Data", "SeedData", "brands.json");
             if (!checkBrands)
             {
-                var brandData = File.ReadAllText(path);
-                var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandData);
+                var brandsData = File.ReadAllText(path);
+                //var brandsData = File.ReadAllText("../Catalog.Infrastructure/Data/SeedData/brands.json");
+                var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
                 if (brands != null)
                 {
-                    foreach (var brand in brands)
+                    foreach (var item in brands)
                     {
-                        brandCollection.InsertOneAsync(brand);
+                        brandCollection.InsertOneAsync(item);
                     }
                 }
             }

@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace Catalog.Infrastructure.Data
 {
-    public class TypeContextSeed
+    public static class TypeContextSeed
     {
         public static void SeedData(IMongoCollection<ProductType> typeCollection)
         {
@@ -12,8 +12,9 @@ namespace Catalog.Infrastructure.Data
             string path = Path.Combine("Data", "SeedData", "types.json");
             if (!checkTypes)
             {
-                var typeData = File.ReadAllText(path);
-                var types = JsonSerializer.Deserialize<List<ProductType>>(typeData);
+                var typesData = File.ReadAllText(path);
+                //var typesData = File.ReadAllText("../Catalog.Infrastructure/Data/SeedData/types.json");
+                var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
                 if (types != null)
                 {
                     foreach (var item in types)
