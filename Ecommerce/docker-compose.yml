@@ -17,6 +17,13 @@ services:
     build:
       context: .
       dockerfile: Services/Basket/Basket.API/Dockerfile
+  portainer: 
+    image: portainer/portainer-ce
 
 volumes:
  mongo_data:
+ portainer_data:
+ postgres_data:
+ pgadmin_data:
+ elasticsearch-data:
+ orderdb-data:  
