@@ -19,8 +19,7 @@ var assemblies = new Assembly[]
 };
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(assemblies));
 builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
-builder.Services.AddGrpc();
-builder.Services.AddHealthChecks();
+builder.Services.AddGrpc(); 
 
 var app = builder.Build();
 
@@ -32,7 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseRouting();
+app.UseRouting(); 
 
 app.UseEndpoints(endpoints =>
 {
